@@ -1,0 +1,45 @@
+Go to login AWS console: Login using your gmail account.
+
+1.	Create 3 different user groups. [Share screen shot for all 3 groups with permissions]:
+Search for IAM -> Click on User Groups -> Click create group -> give group name and click create group. similarly create 2 more groups.
+ 
+2.	Add 1-1 users in each group. [share screen shot for all 3 users.]
+Search for IAM -> Click on User -> Click create user -> select group1 name and click create user. similarly create 2 more users for group2 and group3.
+
+
+3.	Provide below access: 
+	->Provide ec2 and s3 full access to first group.
+	In IAM page, select group1-> permissions ->add permissions->search for "AmazonEc2" and clik on AmazonEC2FullAccess, also search for "AmazonS3" and select AmazonS3FullAccess -> Apply Permission
+	->Provide s3 read only access to second group.
+	In IAM page, select group2-> permissions ->add permissions->search for "AmazonS3" and select AmazonS3ReadOnlyAccess -> Apply Permission
+	->Provide s3 read and write access to third group (should not be able to delete anything).
+	In IAM page, select group3-> permissions ->add permissions->Create Inline Policy->Select S3 service->Under "List" -> Checkbox Read and Write (Uncheck the boxes which has "delete" under the Write)->Under Resources->select "All Resources" -> Give a name for policy->Create policy. 
+	In IAM page, select group3-> permissions ->add permissions->search for the created policy name -> Apply Permission
+	
+	
+4.	Create 1 ec2 instance in mumbai region using first user.
+	In IAM page, go to user1 -> security credentials->manage console access ->enable console->set custom password->Applu-> copy paste the console sign-in link in a different browser and login using the user1 and the custom password. 	
+	Search for EC2-> launch instance-> give a name-> click on "Add key pair"->select ".ppk" and give a name and click ok-> this will download the .ppk file ->checkbox the ssh, http, https and click launch instance.
+	Go to the created instance.
+
+5.	Login to ec2 instance using private key.
+	Go to putty -> Enter the public Ip of the instance in the putty -> in left panel, SSH->auth->credentials->upload the .ppk file in the first upload field-> connect-> use "ec2-user" for user login. 
+
+6.	Instance should be pingable.
+	Go to EC2 -> click on the instance created -> security -> click on security group -> edit inbound rules -> Add rule -> ICMP ipv4 -> 0.0.0.0 -> apply
+	Go to your maveric system and give "ping instance_public_IP"
+	
+7.	Start the nginx server on the instance and open the nginx home page in browser.
+[Share the screen shot with output of ping command and screen shot of nginx home page]
+	In the putty server session, give "yum install nginx" ->type 'Y' when asked. After successfully installed -> "systemctl start nginx" -> "systemctl status nginx"
+	Go to chrome and paste the Instance IP in search bar. Nginx page should open. 
+ 	
+8.	Create s3 bucket using 2nd user and upload any file in that
+	In IAM page, go to user2 -> permissions-> add AmazonS3Full access and apply -> Also, go to security credentials->manage console access ->enable console->set custom password->Apply-> copy paste the console sign-in link in a different browser and login using the user1 and the custom password. 	
+	Go to S3 -> create bucket -> give a unique name-> uncheck block public field -> enable ACL -> click on "enable" for all the fields asked -> create bucket
+	Download any image from internet and upload it in the bucket -> permissions -> edit ACL's -> Give read and list permission for "everyone".
+	
+9.	Make that file public and access that file using url in browser
+[Share the screen shot of browser where file is accessible]
+	Copy paste the image object url link in new tab and image will be displayed
+	

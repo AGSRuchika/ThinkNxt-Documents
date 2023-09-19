@@ -1,0 +1,5 @@
+*Installation of angular typescript: npm install -g typescript 
+*check version of typescript: tsc -v
+*js runtine engine: angular requires node and npm as js runtime engine
+*DOM (document object model): it gives as a object representation of the html. any changes in DOM will reflect in HTML.
+

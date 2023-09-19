@@ -1,0 +1,76 @@
+Create docker image:docker pull httpd
+Check docker image: docker images
+create docker conatiner: docker run -d --name my-httpd -p 8080:80 httpd
+check container: docker ps
+
+Creation of Volume in docker: docker volume create my-vol
+To list the volumes: docker volume ls
+Inspect volume: docker volume inspect my-vol
+To remove volume: docker volume rm my-vol
+
+Creation of "Devtest" container with "myvol12":
+docker run -d \
+  --name devtest \
+  --mount source=myvol2,target=/app \
+  nginx:latest
+
+inspect the devtest container: docker inspect devtest
+
+Stopping and Removing the container and vol: docker container stop devtest
+docker container rm devtest
+docker volume rm myvol2
+
+
+To create a bind mount and go to an interactive session: docker run -it --mount type=bind,src="$(pwd)",target=/src ubuntu bash
+go to src directory: cd src
+create file: touch file.txt
+
+-------------------------------------
+
+
+
+
+k8s node display: kubectl get nodes
+k8s run image and create pod: kubectl run httpd --image=httpd
+K8s deployment creation: kubectl create deployment httpd --image httpd
+k8s get deployment: kubectl get deployment
+replicating k8s: kubectl get replicaset
+k8s creating namespace: kubectl create ns mynamespace
+run the namespace with respect to the image: kubectl run httpd --image=httpd -n mynamespace
+to view created namespace: kubectl get po -n mynamespace (or) kubectl get po --all-mynamespace
+check cluster info: Kubectl cluster-info
+
+Static Yml file:
+
+kubectl create deployment kubecont1 --image=nginx:1.23 --replicas=5
+kubectl expose deployment kubecont1 --type=NodePort --port=80
+kubectl get services kubecont1
+kubectl get rs
+vi deployment.yml
+Insert yml txt file
+kubectl apply -f deployment.yml 
+kubectl get services
+kubectl describe pods kubecont1
+
+--------------------
+
+Static HTML page:
+mkdir demo
+cd demo
+vi index.html (save)
+
+vi docker
+FROM nginx:latest
+COPY index.html /usr/share/nginx/html/
+(Save)
+
+docker build -t my-index-image .
+docker images
+docker run -d -p 8080:80 my-index-image
+
+browser: localhost:8080
+
+
+
+
+

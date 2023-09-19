@@ -1,0 +1,31 @@
+->Prerequisite: Have docker hub installed and signin.
+
+->Go to root directory of angular application
+
+->Since our Application is large, go to package.json file. Under Bugdets, change the maximum and minimum size to 2mb and 5mb respectively.
+
+->create a dockerfile name "Dockerfile" inside angular root directory and paste the below content: 
+
+#Stage 1: 
+FROM node:latest as node 
+WORKDIR /app
+COPY . . 
+RUN npm install
+RUN npm run build --prod
+
+#Stage: 2 
+FROM nginx:alpine
+COPY --from=node /app/dist/customer-session-portal-frontend /usr/share/nginx/html
+
+->Run this command to generate "dist" folder in the root of angular directory: npm run build
+(dist folder gets generated with the index.html in it)
+
+->Create an image: docker build -t cspimage -f Dockerfile .
+
+->To view created image: docker images
+
+->To run a container: docker run -it --rm  -p 8080:80 --name cspcontainer cspimage
+
+->Access the port using: "http://localhost:8080"
+
+

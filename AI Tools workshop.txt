@@ -1,0 +1,14 @@
+Tool 1: ChatGPT: Content
+Tool 2: Gamma App: PPT preparation (copy paste content from chatgpt)
+Tool 3: Tome app: PPT preparation with content
+Tool 4: unroll.me: to unsubscribe the junk emails
+Tool 5: 12ft.io: read blogs without payment
+Tool 6: sci-hub.se: to read the research paper, just paste the research paper name
+Tool 7: merlin chrome extension: know the summarty in 1 line for a whole paragraph. slect paragraph and ri8 click-> send context to merlin. (this can be done for youtube also)
+Tool 8: playground.ai: art work with images
+Tool 9: midjourney.com: more ai art work with images
+Tool 10: app.yoodli.ai: take help for zoom presentatio, interviews
+Tool 11: bard ai: write complicated codes for programming
+Tool 12: Debugcode.ai: Error finding in the code
+Tool 13: formula.dog: Excel,sql,regex formula
+Tool 14: Signal Hire: want to find out the email id/phone num of any person on linkedlin
